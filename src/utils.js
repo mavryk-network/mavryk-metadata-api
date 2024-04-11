@@ -1,4 +1,4 @@
-const { validateContractAddress } = require("@taquito/utils");
+const { validateContractAddress } = require("@mavrykdynamics/taquito-utils");
 const BigNumber = require("bignumber.js");
 
 function isNumeric(str) {

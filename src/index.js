@@ -119,5 +119,5 @@ app.post("/", async (req, res) => {
 consola.info('VERSIONS:', process.versions);
 
 app.listen(port, () =>
-  consola.success(`Tezos token metadata server is listening on port ${port}`)
+  consola.success(`Mavryk token metadata server is listening on port ${port}`)
 );

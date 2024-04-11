@@ -4,9 +4,9 @@ const pMemoize = require("p-memoize");
 const memoizee = require("memoizee");
 const retry = require("async-retry");
 const consola = require("consola");
-const { compose, ChainIds } = require("@taquito/taquito");
-const { tzip12 } = require("@taquito/tzip12");
-const { tzip16 } = require("@taquito/tzip16");
+const { compose, ChainIds } = require("@mavrykdynamics/taquito");
+const { tzip12 } = require("@mavrykdynamics/taquito-tzip12");
+const { tzip16 } = require("@mavrykdynamics/taquito-tzip16");
 const getFixture = require("./fixtures");
 
 const metastore = require("./metastore");
@@ -162,7 +162,7 @@ async function getTokenMetadata(contractAddress, tokenId = 0) {
 
     const standard = detectTokenStandard(contract);
 
-    // (!) Sometimes Tezos node falsely throws 404.
+    // (!) Sometimes Mavryk node falsely throws 404.
     // Retrying would increase search by `timeout * retries` which results
     // in metadata collection taking too long & client receiving error 524.
     const [metadataFromUri, tzip12Metadata] = await Promise.all([

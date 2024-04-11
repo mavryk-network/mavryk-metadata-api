@@ -1,4 +1,4 @@
-const { HttpBackend, HttpResponseError, HttpRequestFailed } = require('@taquito/http-utils');
+const { HttpBackend, HttpResponseError, HttpRequestFailed } = require('@mavrykdynamics/taquito-http-utils');
 const assert = require("assert");
 const consola = require("consola");
 

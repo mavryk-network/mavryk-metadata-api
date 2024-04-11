@@ -1,7 +1,7 @@
-const { HttpResponseError } = require('@taquito/http-utils');
+const { HttpResponseError } = require('@mavrykdynamics/taquito-http-utils');
 const {
   IpfsHttpHandler,
-} = require("@taquito/tzip16");
+} = require("@mavrykdynamics/taquito-tzip16");
 const consola = require("consola");
 const memoizee = require("memoizee");
 

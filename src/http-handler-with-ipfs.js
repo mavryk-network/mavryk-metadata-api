@@ -1,5 +1,5 @@
-const { HttpRequestFailed } = require('@taquito/http-utils');
-const { HttpHandler } = require("@taquito/tzip16");
+const { HttpRequestFailed } = require('@mavrykdynamics/taquito-http-utils');
+const { HttpHandler } = require("@mavrykdynamics/taquito-tzip16");
 
 const HttpBackend = require("./http-backend");
 
