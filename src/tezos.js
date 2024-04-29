@@ -31,7 +31,7 @@ const metadataProvider = new MetadataProvider(
   new Map([
     ["http", httpHandler],
     ["https", httpHandler],
-    ["tezos-storage", new TezosStorageHandler()],
+    ["mavryk-storage", new TezosStorageHandler()],
     ["ipfs", ipfsHandler],
   ])
 );
