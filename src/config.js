@@ -3,13 +3,13 @@ module.exports = {
   baPassword: process.env.BA_PASSWORD || "admin",
   redisUrl: process.env.REDIS_URL || "redis://localhost:6379",
   port: process.env.PORT || 3000,
-  rpcUrl: process.env.RPC_URL || "https://prod.tcinfra.net/rpc/mainnet",
+  rpcUrl: process.env.RPC_URL || "https://mainnet.rpc.mavryk.network",
   readOnlySignerPK:
     process.env.READ_ONLY_SIGNER_PK ||
     "edpkvWbk81uh1DEvdWKR4g1bjyTGhdu1mDvznPUFE2zDwNsLXrEb9K",
   readOnlySingerPKHash:
     process.env.READ_ONLY_SIGNER_PK_HASH ||
-    "tz1fVQangAfb9J1hRRMP2bSB6LvASD6KpY8A",
+    "mv1TrstNzXxwiZnvZjvEGR8CFMn8zbeAZ7SV",
   s3AccessKeyId: process.env.S3_ACCESS_KEY_ID,
   s3SecretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
   s3Endpoint: process.env.S3_ENDPOINT || "https://fra1.digitaloceanspaces.com",

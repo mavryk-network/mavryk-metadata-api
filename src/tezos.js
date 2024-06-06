@@ -1,11 +1,11 @@
-const { TezosToolkit, MichelCodecPacker, ChainIds } = require("@taquito/taquito");
-const { RpcClient, RpcClientCache } = require('@taquito/rpc');
+const { TezosToolkit, MichelCodecPacker, ChainIds } = require("@mavrykdynamics/taquito");
+const { RpcClient, RpcClientCache } = require('@mavrykdynamics/taquito-rpc');
 const {
   Tzip16Module,
   TezosStorageHandler,
   MetadataProvider,
-} = require("@taquito/tzip16");
-const { Tzip12Module } = require("@taquito/tzip12");
+} = require("@mavrykdynamics/taquito-tzip16");
+const { Tzip12Module } = require("@mavrykdynamics/taquito-tzip12");
 const consola = require("consola");
 const pMemoize = require("p-memoize");
 
@@ -31,7 +31,7 @@ const metadataProvider = new MetadataProvider(
   new Map([
     ["http", httpHandler],
     ["https", httpHandler],
-    ["tezos-storage", new TezosStorageHandler()],
+    ["mavryk-storage", new TezosStorageHandler()],
     ["ipfs", ipfsHandler],
   ])
 );
