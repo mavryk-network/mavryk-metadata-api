@@ -10,9 +10,9 @@ const { tzip16 } = require("@mavrykdynamics/taquito-tzip16");
 const getFixture = require("./fixtures");
 
 const metastore = require("./metastore");
-const { Tezos, tezosContext, metadataProvider, getChainId } = require("./tezos");
+const { Mavryk, mavrykContext, metadataProvider, getChainId } = require("./mavryk");
 
-const fetchTokenMetadataFromTzkt = require("./tzkt");
+const fetchTokenMetadataFromMvkt = require("./mvkt");
 const { toTokenSlug, parseBoolean, detectTokenStandard } = require("./utils");
 const { getOrUpdateCachedImage } = require("./image-cache");
 
@@ -23,7 +23,7 @@ const ONE_HOUR_IN_MS = ONE_HOUR_IN_SECONDS * 1000;
 const ONE_DAY_IN_MS = ONE_HOUR_IN_MS * 24;
 
 const getContractForMetadata = memoizee(
-  address => Tezos.contract.at(address, compose(tzip12, tzip16)),
+  address => Mavryk.contract.at(address, compose(tzip12, tzip16)),
   {
     promise: true,
     maxAge: 7 * ONE_DAY_IN_MS,
@@ -70,7 +70,7 @@ const getMetadataFromUri = async (contract, tokenId) => {
   );
 
   return await metadataProvider
-    .provideMetadata(contract, metadataUri, tezosContext)
+    .provideMetadata(contract, metadataUri, mavrykContext)
     .then(
       ({ metadata }) => metadata,
       error => {
@@ -156,7 +156,7 @@ async function getTokenMetadata(contractAddress, tokenId = 0) {
   }
 
   // Flow based on Taquito TZIP-012 & TZIP-016 implementaion
-  // and https://tzip.tezosagora.org/proposal/tzip-21
+  // and https://tzip.mavrykagora.org/proposal/tzip-21
   try {
     const contract = await getContractForMetadata(contractAddress);
 
@@ -182,10 +182,10 @@ async function getTokenMetadata(contractAddress, tokenId = 0) {
     }
 
     if (!isMetadataUsable(rawMetadata)) {
-      consola.info(`Looking for metadata on TZKT, slug=${contractAddress}_${tokenId} ...`);
+      consola.info(`Looking for metadata on MVKT, slug=${contractAddress}_${tokenId} ...`);
 
       const chainId = await getChainId();
-      rawMetadata = await fetchTokenMetadataFromTzkt(chainId, contractAddress, tokenId);
+      rawMetadata = await fetchTokenMetadataFromMvkt(chainId, contractAddress, tokenId);
     }
 
     if (!isMetadataUsable(rawMetadata))

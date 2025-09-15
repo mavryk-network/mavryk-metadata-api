@@ -1,8 +1,8 @@
-const { TezosToolkit, MichelCodecPacker, ChainIds } = require("@mavrykdynamics/taquito");
+const { MavrykToolkit, MichelCodecPacker, ChainIds } = require("@mavrykdynamics/taquito");
 const { RpcClient, RpcClientCache } = require('@mavrykdynamics/taquito-rpc');
 const {
   Tzip16Module,
-  TezosStorageHandler,
+  MavrykStorageHandler,
   MetadataProvider,
 } = require("@mavrykdynamics/taquito-tzip16");
 const { Tzip12Module } = require("@mavrykdynamics/taquito-tzip12");
@@ -15,14 +15,14 @@ const IpfsHttpHandler = require("./ipfs-handler-stacked");
 const HttpHandlerWithIpfs = require("./http-handler-with-ipfs");
 const HttpBackend = require("./http-backend");
 
-const Tezos = new TezosToolkit(
+const Mavryk = new MavrykToolkit(
   new RpcClientCache(
     new RpcClient(rpcUrl, undefined, new HttpBackend()),
     60_000
   )
 );
 
-const tezosContext = Tezos._context;
+const mavrykContext = Mavryk._context;
 
 const ipfsHandler = new IpfsHttpHandler();
 const httpHandler = new HttpHandlerWithIpfs(ipfsHandler);
@@ -31,18 +31,18 @@ const metadataProvider = new MetadataProvider(
   new Map([
     ["http", httpHandler],
     ["https", httpHandler],
-    ["mavryk-storage", new TezosStorageHandler()],
+    ["mavryk-storage", new MavrykStorageHandler()],
     ["ipfs", ipfsHandler],
   ])
 );
 
-Tezos.addExtension(new Tzip16Module(metadataProvider));
-Tezos.addExtension(new Tzip12Module(metadataProvider));
-Tezos.setSignerProvider(new LambdaViewSigner());
-Tezos.setPackerProvider(new MichelCodecPacker());
+Mavryk.addExtension(new Tzip16Module(metadataProvider));
+Mavryk.addExtension(new Tzip12Module(metadataProvider));
+Mavryk.setSignerProvider(new LambdaViewSigner());
+Mavryk.setPackerProvider(new MichelCodecPacker());
 
 const getChainId = pMemoize(async () => {
-  const chainId = await Tezos.rpc.getChainId();
+  const chainId = await Mavryk.rpc.getChainId();
   consola.info('Chain ID = ', chainId);
 
   return chainId;
@@ -55,15 +55,15 @@ getChainId().catch(err => {
 
 const KnownChainIDs = {
   ...ChainIds,
-  MUMBAINET: 'NetXgbcrNtXD2yA',
-  /** DCP Network */
-  T4L3NT: 'NetXooyhiru73tk',
-  T4L3NT_TEST: 'NetXX7Tz1sK8JTa'
+  BASENET: 'NetXmtMsNf69w1w',
+  // /** DCP Network */
+  // T4L3NT: 'NetXooyhiru73tk',
+  // T4L3NT_TEST: 'NetXX7Tz1sK8JTa'
 };
 
 module.exports = {
-  Tezos,
-  tezosContext,
+  Mavryk,
+  mavrykContext,
   KnownChainIDs,
   metadataProvider,
   getChainId

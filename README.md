@@ -1,7 +1,7 @@
 # Token metadata resolver API for Mavryk-based FA1.2 and FA2 tokens
 
 This microservice is used to provide ultimately simple API for fetching token metadata for FA1.2 and FA2 tokens.
-Metadata fetching algorithm relies on Taquito's [TZIP-12](https://tezostaquito.io/docs/tzip12)/[TZIP-16](https://tezostaquito.io/docs/metadata-tzip16) libraries.
+Metadata fetching algorithm relies on Taquito's [TZIP-12](https://taquito.mavryk.org/docs/tzip12)/[TZIP-16](https://taquito.mavryk.org/docs/metadata-tzip16) libraries.
 
 # Configuration
 
@@ -10,7 +10,7 @@ The service can accept the following `ENV` variables:
 | Variable                   | Default                                                  | Description                                                  |
 | -------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ |
 | `PORT`                     | `3000`                                                   | Expected server port                                         |
-| `RPC_URL`                  | `"https://mainnet-tezos.giganode.io/"`                   | RPC URL to be used                                           |
+| `RPC_URL`                  | `"https://rpc.mavryk.network/"`                          | RPC URL to be used                                           |
 | `READ_ONLY_SIGNER_PK`      | `edpkvWbk81uh1DEvdWKR4g1bjyTGhdu1mDvznPUFE2zDwNsLXrEb9K` | Public key of account with balance used for dry-running      |
 | `READ_ONLY_SIGNER_PK_HASH` | `mv1TrstNzXxwiZnvZjvEGR8CFMn8zbeAZ7SV`                   | Public key hash of account with balance used for dry-running |
 
@@ -56,8 +56,8 @@ The following endpoints are currently available:
 [
   {
     "decimals": 6,
-    "symbol": "wXTZ",
-    "name": "Wrapped Tezos"
+    "symbol": "wMVRK",
+    "name": "Wrapped Mavryk"
   },
   {
     "decimals": 8,

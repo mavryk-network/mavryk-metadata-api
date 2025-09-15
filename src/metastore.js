@@ -1,5 +1,5 @@
 const config = require("./config");
-const { getChainId } = require("./tezos");
+const { getChainId } = require("./mavryk");
 
 const callMetastore = async (key, params) => {
   const chainId = await getChainId();
